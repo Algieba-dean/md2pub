@@ -668,16 +668,17 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container flex flex-col">
-    <Progress v-model="progressValue" class="absolute left-0 right-0 rounded-none" style="height: 2px;" />
-    <EditorHeader
-      @start-copy="startCopy"
-      @end-copy="endCopy"
-    />
-
-    <main class="container-main flex flex-1 flex-col">
+  <div class="container flex flex-col bg-background">
+    <Progress v-model="progressValue" class="fixed top-0 left-0 right-0 z-[100] rounded-none" style="height: 2px;" />
+    
+    <main class="container-main flex flex-1 flex-col pt-0">
+      <!-- 头部嵌入到主内容区 -->
+      <EditorHeader
+        @start-copy="startCopy"
+        @end-copy="endCopy"
+      />
       <div
-        class="container-main-section border-radius-10 relative flex flex-1 overflow-hidden border"
+        class="container-main-section relative flex flex-1 overflow-hidden"
       >
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel
@@ -728,7 +729,7 @@ onUnmounted(() => {
               <div
                 id="preview"
                 ref="previewRef"
-                class="preview-wrapper w-full p-5 flex justify-center"
+                class="preview-wrapper w-full p-4 flex justify-center bg-muted/30"
               >
                 <div
                   id="output-wrapper"
@@ -736,7 +737,7 @@ onUnmounted(() => {
                   :class="{ output_night: !backLight }"
                 >
                   <div
-                    class="preview border-x shadow-xl mx-auto"
+                    class="preview border rounded-lg shadow-lg mx-auto bg-background"
                     :class="[
                       isMobile ? 'w-full' : previewWidth,
                       themeStore.previewWidth === 'w-[375px]' ? 'max-w-full' : '',

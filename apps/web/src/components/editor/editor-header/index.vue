@@ -308,16 +308,21 @@ function copyToWeChat() {
 
 <style lang="less" scoped>
 .header-container {
-  background: hsl(var(--background) / 0.95);
-  border-bottom: 1px solid hsl(var(--border));
-  backdrop-filter: blur(12px);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: hsl(var(--background));
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+  transition: all 0.15s ease;
   z-index: 50;
 
   @media (max-width: 768px) {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
+}
+
+.brand-mark {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: hsl(var(--muted) / 0.5);
 }
 
 .menubar {
