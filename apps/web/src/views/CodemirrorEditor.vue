@@ -682,17 +682,17 @@ onUnmounted(() => {
       >
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel
-            :default-size="15"
-            :max-size="isOpenPostSlider ? 20 : 0"
-            :min-size="isOpenPostSlider ? 10 : 0"
+            :default-size="12"
+            :max-size="isOpenPostSlider ? 18 : 0"
+            :min-size="isOpenPostSlider ? 8 : 0"
           >
             <PostSlider />
           </ResizablePanel>
           <ResizableHandle class="hidden md:block" />
           <ResizablePanel
-            :default-size="isOpenFolderPanel ? 15 : 0"
-            :max-size="isOpenFolderPanel ? 25 : 0"
-            :min-size="isOpenFolderPanel ? 10 : 0"
+            :default-size="isOpenFolderPanel ? 18 : 0"
+            :max-size="isOpenFolderPanel ? 28 : 0"
+            :min-size="isOpenFolderPanel ? 12 : 0"
           >
             <FolderSourcePanel />
           </ResizablePanel>

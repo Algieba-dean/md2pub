@@ -228,14 +228,10 @@ function copyToWeChat() {
 
 <template>
   <header
-    class="header-container h-14 flex flex-wrap items-center justify-between px-4 relative"
+    class="header-container h-12 flex items-center justify-between px-3 relative"
   >
-    <!-- 品牌 Logo + 菜单 -->
-    <div class="flex items-center gap-3">
-      <div class="brand-mark hidden sm:flex items-center">
-        <span class="font-semibold text-sm">md2pub</span>
-      </div>
-
+    <!-- 左侧：菜单 -->
+    <div class="flex items-center gap-2">
       <!-- 桌面端菜单 -->
       <div class="space-x-0.5 hidden md:flex">
         <Menubar class="menubar border-0 bg-transparent">
@@ -243,18 +239,15 @@ function copyToWeChat() {
           <EditDropdown @copy="handleCopy" />
           <FormatDropdown />
           <InsertDropdown />
-          <StyleDropdown />
-          <ViewDropdown />
-          <HelpDropdown @open-about="handleOpenAbout" />
         </Menubar>
       </div>
 
-      <!-- 移动端汉堡菜单按钮 -->
+      <!-- 移动端汉堡菜单 -->
       <div class="md:hidden">
         <Menubar class="menubar border-0 p-0">
           <MenubarMenu>
             <MenubarTrigger class="p-0">
-              <Button variant="outline" size="icon">
+              <Button variant="ghost" size="icon">
                 <Menu class="size-4" />
               </Button>
             </MenubarTrigger>
@@ -272,31 +265,49 @@ function copyToWeChat() {
       </div>
     </div>
 
-    <!-- 右侧操作区 -->
-    <div class="flex flex-wrap items-center gap-2">
+    <!-- 中间：品牌标识 -->
+    <div class="brand-mark absolute left-1/2 -translate-x-1/2 hidden sm:block">
+      <span class="text-xs text-muted-foreground">md2pub</span>
+    </div>
+
+    <!-- 右侧：工具区 -->
+    <div class="flex items-center gap-1.5">
+      <!-- 视图/样式/帮助菜单 -->
+      <div class="hidden md:flex space-x-0.5">
+        <Menubar class="menubar border-0 bg-transparent">
+          <StyleDropdown />
+          <ViewDropdown />
+          <HelpDropdown @open-about="handleOpenAbout" />
+        </Menubar>
+      </div>
+
+      <div class="h-4 w-px bg-border mx-1 hidden md:block" />
+
       <!-- 复制按钮 -->
       <Button
-        variant="outline"
-        class="h-9"
+        variant="ghost"
+        size="sm"
+        class="h-8"
         @click="copyToWeChat"
       >
-        <Copy class="mr-2 h-4 w-4" />
-        <span>复制</span>
+        <Copy class="h-4 w-4" />
+        <span class="ml-1.5 hidden lg:inline">复制</span>
       </Button>
-
-      <!-- 文章信息（移动端隐藏） -->
-      <PostInfo class="hidden md:inline-flex" />
 
       <!-- 样式面板 -->
       <Button
-        variant="outline"
-        class="h-9"
+        variant="ghost"
+        size="sm"
+        class="h-8"
         :class="{ 'bg-accent text-accent-foreground': isOpenRightSlider }"
         @click="isOpenRightSlider = !isOpenRightSlider"
       >
-        <Palette class="mr-2 h-4 w-4" />
-        <span>样式</span>
+        <Palette class="h-4 w-4" />
+        <span class="ml-1.5 hidden lg:inline">样式</span>
       </Button>
+
+      <!-- 文章信息 -->
+      <PostInfo class="hidden xl:inline-flex" />
     </div>
   </header>
 
@@ -309,20 +320,8 @@ function copyToWeChat() {
 <style lang="less" scoped>
 .header-container {
   background: hsl(var(--background));
-  border-bottom: 1px solid hsl(var(--border) / 0.5);
-  transition: all 0.15s ease;
+  border-bottom: 1px solid hsl(var(--border) / 0.3);
   z-index: 50;
-
-  @media (max-width: 768px) {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-}
-
-.brand-mark {
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  background: hsl(var(--muted) / 0.5);
 }
 
 .menubar {
