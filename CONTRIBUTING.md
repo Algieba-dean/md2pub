@@ -1,6 +1,6 @@
 # 贡献指南
 
-感谢你对 **doocs/md** 的兴趣！我们欢迎任何形式的贡献，包括但不限于报告缺陷、改进文档、提交新特性或修复 Bug。本指南旨在帮助你快速地为项目做出贡献。
+感谢你对 **md2pub** 的兴趣！我们欢迎任何形式的贡献，包括但不限于报告缺陷、改进文档、提交新特性或修复 Bug。本指南旨在帮助你快速地为项目做出贡献。
 
 ## 目录
 
@@ -45,11 +45,11 @@
 
 ```bash
 # 1. Fork 本仓库并克隆
-git clone https://github.com/<你的用户名>/md.git
-cd md
+git clone https://github.com/<你的用户名>/md2pub.git
+cd md2pub
 
 # 2. 配置上游仓库
-git remote add upstream https://github.com/doocs/md.git
+git remote add upstream https://github.com/Algieba-dean/md2pub.git
 
 # 3. 安装依赖
 pnpm install
@@ -161,10 +161,9 @@ feat(editor): 支持自定义快捷键
 
 ## 沟通渠道
 
-- **GitHub Discussions**：[https://github.com/doocs/md/discussions](https://github.com/doocs/md/discussions)
+- **GitHub Discussions**：[https://github.com/Algieba-dean/md2pub/discussions](https://github.com/Algieba-dean/md2pub/discussions)
 - **Issues**：仅限缺陷反馈和功能需求
-- **微信群**：添加项目维护者微信，备注 `md`，拉你进群
 
 ---
 
-❤️ 感谢每一位贡献者！让我们一起让 **doocs/md** 变得更好。
+❤️ 感谢每一位贡献者！让我们一起让 **md2pub** 变得更好。

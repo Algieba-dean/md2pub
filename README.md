@@ -1,44 +1,39 @@
 <div align="center">
 
-[![doocs-md](https://cdn-doocs.oss-cn-shenzhen.aliyuncs.com/gh/doocs/md/images/logo-2.png)](https://github.com/doocs/md)
+# md2pub
+
+**Markdown to Publishing**
 
 </div>
 
-<h1 align="center">微信 Markdown 编辑器</h1>
+<h1 align="center">Markdown 编辑器</h1>
 
 <div align="center">
 
-[![status](https://img.shields.io/github/actions/workflow/status/doocs/md/deploy.yml?style=flat-square&labelColor=564341&color=42cc23)](https://github.com/doocs/md/actions) [![node](https://img.shields.io/badge/node-%3E%3D22-42cc23?style=flat-square&labelColor=564341)](https://nodejs.org/en/about/previous-releases) [![pr](https://img.shields.io/badge/prs-welcome-42cc23?style=flat-square&labelColor=564341)](https://github.com/doocs/md/pulls) [![stars](https://img.shields.io/github/stars/doocs/md?style=flat-square&labelColor=564341&color=42cc23)](https://github.com/doocs/md/stargazers) [![forks](https://img.shields.io/github/forks/doocs/md?style=flat-square&labelColor=564341&color=42cc23)](https://github.com/doocs/md)<br> [![release](https://img.shields.io/github/v/release/doocs/md?style=flat-square&labelColor=564341&color=42cc23)](https://github.com/doocs/md/releases) [![npm](https://img.shields.io/npm/v/@doocs/md-cli?style=flat-square&labelColor=564341&color=42cc23)](https://www.npmjs.com/package/@doocs/md-cli) [![docker](https://img.shields.io/badge/docker-latest-42cc23?style=flat-square&labelColor=564341)](https://hub.docker.com/r/doocs/md)
+[![node](https://img.shields.io/badge/node-%3E%3D22-42cc23?style=flat-square&labelColor=564341)](https://nodejs.org/en/about/previous-releases) [![pr](https://img.shields.io/badge/prs-welcome-42cc23?style=flat-square&labelColor=564341)](https://github.com/Algieba-dean/md2pub/pulls) [![stars](https://img.shields.io/github/stars/Algieba-dean/md2pub?style=flat-square&labelColor=564341&color=42cc23)](https://github.com/Algieba-dean/md2pub/stargazers)
 
 </div>
-
-## 🎯 赞助商
-
-<div align="center">
-
-[![302.AI](https://cdn-doocs.oss-cn-shenzhen.aliyuncs.com/gh/doocs/md/images/sponsor-1.jpg)](https://share.302.ai/ftIXIE)
-
-</div>
-
-> **[302.AI](https://share.302.ai/ftIXIE)** 是一个按用量付费的企业级 AI 资源平台，提供市场上最新、最全面的 AI 模型和 API，以及多种开箱即用的在线 AI 应用。
 
 ## 📝 项目介绍
 
-**Markdown 文档自动即时渲染为微信图文**，让你不再为微信内容排版而发愁！只要你会基本的 Markdown 语法（现在有了 AI，你甚至不需要会 Markdown），就能做出一篇样式简洁而又美观大方的微信图文。
+**md2pub** 是一款功能强大的 Markdown 编辑器，专注于**多样化主题**和**本地博客管理**能力。支持将 Markdown 文档即时渲染为精美排版，适用于微信公众号、博客发布等多种场景。
 
-**如果这个项目对你有帮助，请给我们点个 Star ⭐️**，我们会持续更新和维护！
+> 本项目基于 [doocs/md](https://github.com/doocs/md) 二次开发，感谢原作者的杰出贡献！
 
-## 🌐 在线编辑器地址
+## 🌟 特色功能
 
-[https://md.doocs.org](https://md.doocs.org)
+- **多样化主题**：提供丰富的主题和样式选择
+- **本地博客管理**：支持草稿、分类、标签管理
+- **TDD 开发模式**：测试驱动开发，确保代码质量
 
-> **推荐使用 Chrome 浏览器**，效果最佳。
+## 🤔 为何二次开发
 
-## 🤔 为何开发这款编辑器
+我们希望在原项目基础上：
+- 提供更多主题和样式变体
+- 增强本地博客管理能力
+- 采用 TDD 模式确保代码质量
 
-现有的开源微信 Markdown 编辑器样式繁杂，排版过程中往往需要额外调整，影响使用效率。为了解决这一问题，我们打造了一款更加**简洁、优雅**的编辑器，提供更流畅的排版体验。
-
-欢迎各位朋友随时提交 PR，让这款微信 Markdown 编辑器变得更好！如果你有新的想法，也欢迎在 [💬 Discussions 讨论区](https://github.com/doocs/md/discussions)反馈。
+欢迎各位朋友随时提交 PR！如果你有新的想法，也欢迎在 [💬 Discussions 讨论区](https://github.com/Algieba-dean/md2pub/discussions)反馈。
 
 ## ✨ 功能特性
 
@@ -171,56 +166,14 @@ docker run -d -p 8080:80 doocs/md:latest
 
 关于本项目 Docker 镜像的更多详细信息，可以关注 https://github.com/doocs/docker-md
 
-## 👥 谁在使用
-
-请查看 [📋 USERS.md](USERS.md) 文件，了解使用本项目的公众号。
-
 ## 🤝 贡献指南
 
 我们欢迎任何形式的贡献！请查看 [📖 CONTRIBUTING.md](./CONTRIBUTING.md) 获取提交 PR、Issue 的流程与规范。
 
-## ☕ 支持我们
-
-如果本项目对你有所帮助，可以通过以下方式支持我们的持续开发。
-
-<table style="margin: 0 auto">
-  <tbody>
-    <tr>
-      <td align="center" style="width: 260px">
-        <img
-          src="https://cdn-doocs.oss-cn-shenzhen.aliyuncs.com/gh/doocs/md/images/support1.jpg"
-          style="width: 200px"
-        /><br />
-      </td>
-      <td align="center" style="width: 260px">
-        <img
-          src="https://cdn-doocs.oss-cn-shenzhen.aliyuncs.com/gh/doocs/md/images/support2.jpg"
-          style="width: 200px"
-        /><br />
-      </td>
-    </tr>
-  </tbody>
-</table>
-
 ## 💬 反馈与交流
 
-如果你在使用过程中遇到问题，或者有好的建议，欢迎在 [🐛 Issues](https://github.com/doocs/md/issues) 中反馈。你也可以加入我们的交流群，和我们一起讨论，若群二维码失效，请添加好友，备注 `md`，我们会拉你进群。
+如果你在使用过程中遇到问题，或者有好的建议，欢迎在 [🐛 Issues](https://github.com/Algieba-dean/md2pub/issues) 中反馈。
 
-<table style="margin: 0 auto">
-  <tbody>
-    <tr>
-      <td align="center" style="width: 260px">
-        <img
-          src="https://cdn-doocs.oss-cn-shenzhen.aliyuncs.com/gh/doocs/md/images/doocs-md-wechat-group.jpg"
-          style="width: 200px"
-        /><br />
-      </td>
-      <td align="center" style="width: 260px">
-        <img
-          src="https://cdn-doocs.oss-cn-shenzhen.aliyuncs.com/gh/doocs/md/images/wechat-ylb.jpg"
-          style="width: 200px"
-        /><br />
-      </td>
-    </tr>
-  </tbody>
-</table>
+## 🙏 致谢
+
+本项目基于 [doocs/md](https://github.com/doocs/md) 二次开发，感谢原作者及所有贡献者的杰出工作！

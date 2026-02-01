@@ -20,6 +20,16 @@ export const themeOptionsMap = {
     value: `simple`,
     desc: `@okooo5km`,
   },
+  minimal: {
+    label: `极简`,
+    value: `minimal`,
+    desc: `md2pub`,
+  },
+  tech: {
+    label: `技术`,
+    value: `tech`,
+    desc: `md2pub`,
+  },
 }
 
 export const themeOptions: IConfigOption<ThemeName>[] = [
@@ -37,5 +47,15 @@ export const themeOptions: IConfigOption<ThemeName>[] = [
     label: `简洁`,
     value: `simple`,
     desc: `@okooo5km`,
+  },
+  {
+    label: `极简`,
+    value: `minimal`,
+    desc: `md2pub`,
+  },
+  {
+    label: `技术`,
+    value: `tech`,
+    desc: `md2pub`,
   },
 ]

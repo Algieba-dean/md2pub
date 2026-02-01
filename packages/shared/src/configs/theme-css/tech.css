@@ -1,0 +1,230 @@
+/**
+ * md2pub 技术博客主题 (Tech)
+ * 适合技术文章、编程教程
+ * 如需使用主题色，请使用 var(--md-primary-color) 代替颜色值
+ */
+
+/* ==================== 一级标题 ==================== */
+h1 {
+  margin: 2em 0 1em;
+  padding: 0.5em 0;
+  border-bottom: 2px solid var(--md-primary-color);
+  color: hsl(var(--foreground));
+  font-size: calc(var(--md-font-size) * 1.4);
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+}
+
+/* ==================== 二级标题 ==================== */
+h2 {
+  margin: 2em 0 1em;
+  padding: 0.3em 0.6em;
+  background: linear-gradient(90deg, var(--md-primary-color) 0%, transparent 100%);
+  color: #fff;
+  font-size: calc(var(--md-font-size) * 1.2);
+  font-weight: 600;
+  border-radius: 4px 0 0 4px;
+}
+
+/* ==================== 三级标题 ==================== */
+h3 {
+  margin: 1.5em 0 0.8em;
+  padding-left: 0.8em;
+  border-left: 4px solid var(--md-primary-color);
+  color: hsl(var(--foreground));
+  font-size: calc(var(--md-font-size) * 1.1);
+  font-weight: 600;
+}
+
+/* ==================== 四级标题 ==================== */
+h4 {
+  margin: 1.2em 0 0.6em;
+  color: var(--md-primary-color);
+  font-size: var(--md-font-size);
+  font-weight: 600;
+}
+
+h4::before {
+  content: '▸ ';
+  color: var(--md-primary-color);
+}
+
+/* ==================== 五级标题 ==================== */
+h5 {
+  margin: 1em 0 0.5em;
+  color: hsl(var(--foreground));
+  font-size: var(--md-font-size);
+  font-weight: 600;
+}
+
+/* ==================== 六级标题 ==================== */
+h6 {
+  margin: 1em 0 0.5em;
+  color: hsl(var(--foreground) / 0.7);
+  font-size: var(--md-font-size);
+  font-weight: 500;
+}
+
+/* ==================== 段落 ==================== */
+p {
+  margin: 1.2em 0;
+  line-height: 1.9;
+  color: hsl(var(--foreground));
+  text-align: justify;
+}
+
+/* ==================== 引用块 ==================== */
+blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.2em;
+  border-left: 4px solid var(--md-primary-color);
+  background: linear-gradient(90deg, hsl(var(--muted)) 0%, transparent 100%);
+  border-radius: 0 8px 8px 0;
+}
+
+blockquote > p {
+  margin: 0.5em 0;
+  color: hsl(var(--foreground) / 0.9);
+  font-style: italic;
+}
+
+/* ==================== 列表 ==================== */
+ul,
+ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+  color: hsl(var(--foreground));
+}
+
+li {
+  margin: 0.5em 0;
+  line-height: 1.8;
+}
+
+li::marker {
+  color: var(--md-primary-color);
+}
+
+/* ==================== 代码（技术风格强调） ==================== */
+code {
+  padding: 0.2em 0.5em;
+  background: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-family: 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+  color: var(--md-primary-color);
+}
+
+pre {
+  margin: 1.5em 0;
+  padding: 1.2em;
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow-x: auto;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #d4d4d4;
+}
+
+/* ==================== 链接 ==================== */
+a {
+  color: var(--md-primary-color);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--md-primary-color);
+  transition: all 0.2s;
+}
+
+a:hover {
+  border-bottom-style: solid;
+}
+
+/* ==================== 图片 ==================== */
+img {
+  max-width: 100%;
+  margin: 1.5em auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* ==================== 分割线 ==================== */
+hr {
+  margin: 2.5em 0;
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--md-primary-color) 50%, transparent 100%);
+}
+
+/* ==================== 表格 ==================== */
+table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+th,
+td {
+  padding: 0.8em 1em;
+  border: 1px solid hsl(var(--border));
+  text-align: left;
+}
+
+th {
+  background: var(--md-primary-color);
+  color: #fff;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: hsl(var(--muted) / 0.5);
+}
+
+/* ==================== 提示框 ==================== */
+.tip,
+.warning,
+.danger {
+  margin: 1.5em 0;
+  padding: 1em 1.2em;
+  border-radius: 8px;
+}
+
+.tip {
+  background: #d1fae5;
+  border-left: 4px solid #10b981;
+}
+
+.warning {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+}
+
+.danger {
+  background: #fee2e2;
+  border-left: 4px solid #ef4444;
+}
+
+/* ==================== 强调 ==================== */
+strong {
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+
+em {
+  font-style: italic;
+  color: var(--md-primary-color);
+}
+
+mark {
+  background: linear-gradient(120deg, #fef08a 0%, #fef08a 100%);
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}

@@ -1,16 +1,16 @@
 {
-  "name": "md",
+  "name": "md2pub",
   "type": "module",
   "version": "2.1.0",
   "private": false,
-  "description": "WeChat Markdown Editor | 一款高度简洁的微信 Markdown 编辑器：支持 Markdown 语法、自定义主题样式、内容管理、多图床、AI 助手等特性",
-  "homepage": "https://github.com/doocs/md",
+  "description": "md2pub - Markdown to Publishing | 一款高度简洁的 Markdown 编辑器：支持多样化主题、本地博客管理、自定义样式、多图床、AI 助手等特性",
+  "homepage": "https://github.com/Algieba-dean/md2pub",
   "repository": {
     "type": "git",
-    "url": "https://github.com/doocs/md"
+    "url": "https://github.com/Algieba-dean/md2pub"
   },
   "bugs": {
-    "url": "https://github.com/doocs/md/issues"
+    "url": "https://github.com/Algieba-dean/md2pub/issues"
   },
   "engines": {
     "node": ">=22.16.0"
@@ -23,6 +23,11 @@
     "build:cli": "pnpm web build && npx shx rm -rf packages/md-cli/dist && npx shx rm -rf dist/**/*.map && npx shx cp -r apps/web/dist packages/md-cli/ && cd packages/md-cli && npm pack",
     "release:cli": "node ./scripts/release.js",
     "lint": "eslint . --fix",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "type-check": "vue-tsc --build --force",
     "postinstall": "simple-git-hooks",
     "inspector": "pnpx node-modules-inspector",
@@ -34,6 +39,10 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "7.2.0",
+    "@vitest/coverage-v8": "^3.1.0",
+    "vitest": "^3.1.0",
+    "jsdom": "^26.1.0",
+    "@playwright/test": "^1.50.0",
     "@types/node": "^25.0.10",
     "archiver": "^7.0.1",
     "cross-env": "^10.1.0",

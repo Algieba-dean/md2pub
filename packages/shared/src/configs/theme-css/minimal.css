@@ -1,0 +1,165 @@
+/**
+ * md2pub 极简主题 (Minimal)
+ * 专注于内容，去除装饰性元素
+ * 如需使用主题色，请使用 var(--md-primary-color) 代替颜色值
+ */
+
+/* ==================== 一级标题 ==================== */
+h1 {
+  margin: 2em 0 1em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eee;
+  color: hsl(var(--foreground));
+  font-size: calc(var(--md-font-size) * 1.5);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* ==================== 二级标题 ==================== */
+h2 {
+  margin: 1.8em 0 0.8em;
+  color: hsl(var(--foreground));
+  font-size: calc(var(--md-font-size) * 1.3);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* ==================== 三级标题 ==================== */
+h3 {
+  margin: 1.5em 0 0.6em;
+  color: hsl(var(--foreground));
+  font-size: calc(var(--md-font-size) * 1.1);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* ==================== 四级标题 ==================== */
+h4 {
+  margin: 1.2em 0 0.5em;
+  color: hsl(var(--foreground));
+  font-size: var(--md-font-size);
+  font-weight: 600;
+}
+
+/* ==================== 五级标题 ==================== */
+h5 {
+  margin: 1em 0 0.4em;
+  color: hsl(var(--foreground));
+  font-size: var(--md-font-size);
+  font-weight: 600;
+}
+
+/* ==================== 六级标题 ==================== */
+h6 {
+  margin: 1em 0 0.4em;
+  color: hsl(var(--foreground) / 0.8);
+  font-size: var(--md-font-size);
+  font-weight: 600;
+}
+
+/* ==================== 段落 ==================== */
+p {
+  margin: 1em 0;
+  line-height: 1.8;
+  color: hsl(var(--foreground));
+}
+
+/* ==================== 引用块 ==================== */
+blockquote {
+  margin: 1.5em 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid #ddd;
+  color: hsl(var(--foreground) / 0.8);
+  background: transparent;
+}
+
+blockquote > p {
+  margin: 0.5em 0;
+  color: inherit;
+}
+
+/* ==================== 列表 ==================== */
+ul,
+ol {
+  margin: 1em 0;
+  padding-left: 2em;
+  color: hsl(var(--foreground));
+}
+
+li {
+  margin: 0.3em 0;
+  line-height: 1.7;
+}
+
+/* ==================== 代码 ==================== */
+code {
+  padding: 0.2em 0.4em;
+  background: hsl(var(--muted));
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+pre {
+  margin: 1.5em 0;
+  padding: 1em;
+  background: hsl(var(--muted));
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+}
+
+/* ==================== 链接 ==================== */
+a {
+  color: var(--md-primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ==================== 图片 ==================== */
+img {
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+/* ==================== 分割线 ==================== */
+hr {
+  margin: 2em 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+/* ==================== 表格 ==================== */
+table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.6em 1em;
+  border: 1px solid #eee;
+  text-align: left;
+}
+
+th {
+  background: hsl(var(--muted));
+  font-weight: 600;
+}
+
+/* ==================== 强调 ==================== */
+strong {
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+em {
+  font-style: italic;
+}
