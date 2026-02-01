@@ -293,9 +293,9 @@ export function injectStyles(
 }
 
 /**
- * 生成 CSS 变量声明
+ * 生成平台渲染 CSS 变量声明
  */
-export function generateCSSVariables(context: RenderContext): string {
+export function generatePlatformCSSVariables(context: RenderContext): string {
   const { preset, primaryColor, darkMode } = context
   const { typography } = preset
 

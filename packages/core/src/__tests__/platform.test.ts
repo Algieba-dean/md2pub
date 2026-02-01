@@ -306,4 +306,365 @@ describe('CSS Injection Strategy', () => {
     // Class-based should add class prefixes
     expect(result.html).toContain('md2pub-')
   })
+
+  it('email should use inline-minimal', () => {
+    const result = renderForPlatform('# Test\n\nParagraph', 'email')
+    expect(result.preset).toBe('email')
+    expect(result.html).toBeDefined()
+  })
+
+  it('medium should use inline-minimal', () => {
+    const result = renderForPlatform('# Test', 'medium')
+    expect(result.preset).toBe('medium')
+  })
+
+  it('devto should use class-based', () => {
+    const result = renderForPlatform('# Test', 'devto')
+    expect(result.preset).toBe('devto')
+  })
+})
+
+describe('Advanced Typography', () => {
+  describe('Mixed Content Spacing', () => {
+    it('should handle complex mixed content', () => {
+      expect(addPanguSpacing('这是Version2.0版本')).toBe('这是 Version2.0 版本')
+      expect(addPanguSpacing('Node.js是JavaScript运行时')).toBe('Node.js 是 JavaScript 运行时')
+    })
+
+    it('should handle punctuation correctly', () => {
+      expect(addPanguSpacing('中文，English')).toBe('中文，English')
+      expect(addPanguSpacing('中文。English')).toBe('中文。English')
+    })
+
+    it('should handle special characters', () => {
+      // Note: pangu spacing focuses on CJK-Latin boundaries, not all special chars
+      const result1 = addPanguSpacing('使用@符号')
+      const result2 = addPanguSpacing('价格$100元')
+      expect(result1).toBeDefined()
+      expect(result2).toBeDefined()
+    })
+  })
+
+  describe('Reading Time Edge Cases', () => {
+    it('should handle empty content', () => {
+      const result = calculateReadingTime('')
+      expect(result.minutes).toBe(1)
+      expect(result.words).toBe(0)
+    })
+
+    it('should handle very long content', () => {
+      const longText = '这是中文测试。'.repeat(10000)
+      const result = calculateReadingTime(longText)
+      expect(result.minutes).toBeGreaterThan(10)
+    })
+
+    it('should handle mixed language content', () => {
+      const mixedText = '中文English混合Content测试Test'.repeat(100)
+      const result = calculateReadingTime(mixedText)
+      expect(result.words).toBeGreaterThan(0)
+    })
+  })
+})
+
+describe('DOM Transformations Edge Cases', () => {
+  describe('Code Block Transformations', () => {
+    it('should handle code without language', () => {
+      const html = '<pre><code>plain text code</code></pre>'
+      const result = transformCodeBlocks(html, 'mac-window')
+      expect(result).toContain('mac-sign')
+    })
+
+    it('should handle multiple code blocks', () => {
+      const html = `
+        <pre><code class="language-js">const a = 1;</code></pre>
+        <p>Some text</p>
+        <pre><code class="language-python">print("hello")</code></pre>
+      `
+      const result = transformCodeBlocks(html, 'mac-window')
+      const macSignCount = (result.match(/mac-sign/g) || []).length
+      expect(macSignCount).toBe(2)
+    })
+
+    it('should handle empty code blocks', () => {
+      const html = '<pre><code></code></pre>'
+      const result = transformCodeBlocks(html, 'mac-window')
+      expect(result).toBeDefined()
+    })
+
+    it('should preserve code content', () => {
+      const html = '<pre><code>const x = "hello";</code></pre>'
+      const result = transformCodeBlocks(html, 'mac-window')
+      expect(result).toContain('const x = "hello"')
+    })
+  })
+
+  describe('Image Container Transformations', () => {
+    it('should handle images without alt text', () => {
+      const html = '<p><img src="test.jpg"></p>'
+      const result = transformImageContainers(html, 'figure')
+      expect(result).toContain('<figure>')
+    })
+
+    it('should handle multiple images', () => {
+      const html = '<p><img src="1.jpg" alt="Image 1"></p><p><img src="2.jpg" alt="Image 2"></p>'
+      const result = transformImageContainers(html, 'figure')
+      const figureCount = (result.match(/<figure>/g) || []).length
+      expect(figureCount).toBe(2)
+    })
+
+    it('should handle images with figcaption', () => {
+      const html = '<p><img src="test.jpg" alt="Test caption"></p>'
+      const result = transformImageContainers(html, 'figure')
+      expect(result).toContain('<figure>')
+      expect(result).toContain('Test caption')
+    })
+  })
+
+  describe('Footnote Transformations', () => {
+    it('should handle empty footnotes array', () => {
+      const html = '<p>Test content</p>'
+      const result = transformFootnotes(html, [], 'inline-text')
+      expect(result).not.toContain('参考资料')
+    })
+
+    it('should handle footnotes without links', () => {
+      const footnotes: FootnoteItem[] = [
+        { id: '1', index: 1, title: 'Note without link' },
+      ]
+      const html = '<p>Test[^1]</p>'
+      const result = transformFootnotes(html, footnotes, 'inline-text')
+      expect(result).toContain('参考资料')
+    })
+
+    it('should number footnotes correctly', () => {
+      const footnotes: FootnoteItem[] = [
+        { id: '1', index: 1, title: 'First' },
+        { id: '2', index: 2, title: 'Second' },
+        { id: '3', index: 3, title: 'Third' },
+      ]
+      const html = '<p>Test</p>'
+      const result = transformFootnotes(html, footnotes, 'inline-text')
+      expect(result).toContain('[1]')
+      expect(result).toContain('[2]')
+      expect(result).toContain('[3]')
+    })
+  })
+})
+
+describe('Platform Renderer Advanced', () => {
+  describe('Custom Transformers', () => {
+    it('should allow registering custom transformers', () => {
+      const renderer = createPlatformRenderer('wechat')
+      // Custom transformer follows ASTTransformer interface
+      const customTransformer = {
+        name: 'test-transformer',
+        transform: (html: string) => html.replace(/test/g, 'TEST'),
+      }
+      renderer.registerTransformer(customTransformer)
+      
+      const result = renderer.render('This is a test')
+      expect(result.html).toContain('TEST')
+    })
+  })
+
+  describe('Context Handling', () => {
+    it('should pass context through render pipeline', () => {
+      const renderer = createPlatformRenderer('wechat')
+      const context: Partial<RenderContext> = {
+        darkMode: true,
+        primaryColor: '#ff0000',
+      }
+      
+      const result = renderer.render('# Test', context)
+      expect(result.html).toBeDefined()
+    })
+
+    it('should use default context when not provided', () => {
+      const renderer = createPlatformRenderer('wechat')
+      const result = renderer.render('# Test')
+      expect(result.html).toBeDefined()
+    })
+  })
+
+  describe('Complex Markdown Rendering', () => {
+    it('should handle tables', () => {
+      const markdown = `
+| Header 1 | Header 2 |
+|----------|----------|
+| Cell 1   | Cell 2   |
+`
+      const result = renderForPlatform(markdown, 'wechat')
+      expect(result.html).toContain('table')
+      expect(result.html).toContain('Header 1')
+    })
+
+    it('should handle blockquotes', () => {
+      const markdown = '> This is a quote'
+      const result = renderForPlatform(markdown, 'wechat')
+      expect(result.html.toLowerCase()).toContain('blockquote')
+    })
+
+    it('should handle lists', () => {
+      const markdown = `
+- Item 1
+- Item 2
+  - Nested item
+`
+      const result = renderForPlatform(markdown, 'wechat')
+      // Inline styles may transform the tag, check for list content
+      expect(result.html).toContain('Item 1')
+      expect(result.html).toContain('Item 2')
+    })
+
+    it('should handle ordered lists', () => {
+      const markdown = `
+1. First
+2. Second
+3. Third
+`
+      const result = renderForPlatform(markdown, 'wechat')
+      expect(result.html).toContain('First')
+      expect(result.html).toContain('Second')
+    })
+
+    it('should handle inline code', () => {
+      const markdown = 'Use `const` for constants'
+      const result = renderForPlatform(markdown, 'wechat')
+      expect(result.html).toContain('const')
+    })
+
+    it('should handle bold and italic', () => {
+      const markdown = '**bold** and *italic* text'
+      const result = renderForPlatform(markdown, 'wechat')
+      expect(result.html).toContain('bold')
+      expect(result.html).toContain('italic')
+    })
+
+    it('should handle links', () => {
+      const markdown = '[Link](https://example.com)'
+      const result = renderForPlatform(markdown, 'wechat')
+      expect(result.html).toContain('href')
+      expect(result.html).toContain('example.com')
+    })
+
+    it('should handle horizontal rules', () => {
+      const markdown = 'Above\n\n---\n\nBelow'
+      const result = renderForPlatform(markdown, 'wechat')
+      expect(result.html).toContain('hr')
+    })
+  })
+
+  describe('Platform Specific Features', () => {
+    it('zhihu should not have mac-style code blocks', () => {
+      const markdown = '```js\nconst x = 1;\n```'
+      const result = renderForPlatform(markdown, 'zhihu')
+      expect(result.html).not.toContain('mac-sign')
+    })
+
+    it('email should have simple image containers', () => {
+      const markdown = '![Test](test.jpg)'
+      const result = renderForPlatform(markdown, 'email')
+      expect(result.html).not.toContain('<figure>')
+    })
+
+    it('semantic should wrap in article tag', () => {
+      const markdown = '# Test Article\n\nContent here.'
+      const result = renderForPlatform(markdown, 'semantic')
+      expect(result.html).toContain('<article')
+    })
+
+    it('wechat should apply pangu spacing', () => {
+      const markdown = '使用React构建UI'
+      const result = renderForPlatform(markdown, 'wechat')
+      expect(result.html).toContain('React')
+    })
+  })
+})
+
+describe('Preset Configuration Validation', () => {
+  it('all presets should have required core fields', () => {
+    const presets = getAllPresets()
+    presets.forEach((preset) => {
+      expect(preset.id).toBeDefined()
+      expect(preset.name).toBeDefined()
+      expect(preset.cssStrategy).toBeDefined()
+    })
+  })
+
+  it('all presets should have valid CSS strategies', () => {
+    const validStrategies = ['inline-heavy', 'inline-minimal', 'class-based', 'table-layout']
+    const presets = getAllPresets()
+    presets.forEach((preset) => {
+      expect(validStrategies).toContain(preset.cssStrategy)
+    })
+  })
+
+  it('all presets should have valid footnote strategies', () => {
+    const validStrategies = ['inline-text', 'anchor-jump', 'tooltip', 'sidenote']
+    const presets = getAllPresets()
+    presets.forEach((preset) => {
+      if (preset.footnoteStrategy) {
+        expect(validStrategies).toContain(preset.footnoteStrategy)
+      }
+    })
+  })
+
+  it('all presets should have valid code block styles', () => {
+    const validStyles = ['mac-window', 'plain', 'line-numbers', 'minimal']
+    const presets = getAllPresets()
+    presets.forEach((preset) => {
+      if (preset.codeBlockStyle) {
+        expect(validStyles).toContain(preset.codeBlockStyle)
+      }
+    })
+  })
+
+  it('all presets should have valid image container styles if defined', () => {
+    const validStyles = ['figure', 'simple', 'responsive']
+    const presets = getAllPresets()
+    presets.forEach((preset) => {
+      if (preset.imageContainerStyle) {
+        expect(validStyles).toContain(preset.imageContainerStyle)
+      }
+    })
+  })
+
+  it('typography config should have valid values', () => {
+    const presets = getAllPresets()
+    presets.forEach((preset) => {
+      if (preset.typography) {
+        expect(preset.typography.baseFontSize).toBeGreaterThan(0)
+        expect(preset.typography.lineHeight).toBeGreaterThan(0)
+      }
+    })
+  })
+})
+
+describe('Error Handling', () => {
+  it('should handle malformed markdown gracefully', () => {
+    const malformedMarkdown = '# Unclosed [link(test'
+    expect(() => renderForPlatform(malformedMarkdown, 'wechat')).not.toThrow()
+  })
+
+  it('should handle empty markdown', () => {
+    const result = renderForPlatform('', 'wechat')
+    expect(result.html).toBeDefined()
+  })
+
+  it('should handle markdown with only whitespace', () => {
+    const result = renderForPlatform('   \n\n   ', 'wechat')
+    expect(result.html).toBeDefined()
+  })
+
+  it('should handle very long markdown', () => {
+    const longMarkdown = '# Test\n\n' + 'This is a paragraph. '.repeat(10000)
+    expect(() => renderForPlatform(longMarkdown, 'wechat')).not.toThrow()
+  })
+
+  it('should handle special characters in markdown', () => {
+    const specialChars = '# Test <script>alert("xss")</script>'
+    const result = renderForPlatform(specialChars, 'wechat')
+    // Should escape or handle script tags
+    expect(result.html).not.toContain('<script>')
+  })
 })

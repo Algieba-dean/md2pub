@@ -1,41 +1,61 @@
 import { describe, expect, it } from 'vitest'
-import { baseCSSContent, themeMap } from '@md/shared/configs/theme'
+import { themeOptions, themeOptionsMap } from '@md/shared/configs/theme'
 
 describe('Theme System', () => {
-  describe('Theme Map', () => {
-    it('should have base CSS content', () => {
-      expect(baseCSSContent).toBeDefined()
-      expect(typeof baseCSSContent).toBe('string')
-      expect(baseCSSContent.length).toBeGreaterThan(0)
+  describe('Theme Options', () => {
+    it('should have theme options defined', () => {
+      expect(themeOptions).toBeDefined()
+      expect(Array.isArray(themeOptions)).toBe(true)
+      expect(themeOptions.length).toBeGreaterThan(0)
     })
 
-    it('should have default theme', () => {
-      expect(themeMap.default).toBeDefined()
-      expect(typeof themeMap.default).toBe('string')
+    it('should have default theme option', () => {
+      const defaultTheme = themeOptions.find(t => t.value === 'default')
+      expect(defaultTheme).toBeDefined()
+      expect(defaultTheme?.label).toBe('经典')
     })
 
-    it('should have grace theme', () => {
-      expect(themeMap.grace).toBeDefined()
-      expect(typeof themeMap.grace).toBe('string')
+    it('should have grace theme option', () => {
+      const graceTheme = themeOptions.find(t => t.value === 'grace')
+      expect(graceTheme).toBeDefined()
+      expect(graceTheme?.label).toBe('优雅')
     })
 
-    it('should have simple theme', () => {
-      expect(themeMap.simple).toBeDefined()
-      expect(typeof themeMap.simple).toBe('string')
+    it('should have simple theme option', () => {
+      const simpleTheme = themeOptions.find(t => t.value === 'simple')
+      expect(simpleTheme).toBeDefined()
+      expect(simpleTheme?.label).toBe('简洁')
+    })
+
+    it('should have minimal theme option', () => {
+      const minimalTheme = themeOptions.find(t => t.value === 'minimal')
+      expect(minimalTheme).toBeDefined()
+      expect(minimalTheme?.label).toBe('极简')
+    })
+
+    it('should have tech theme option', () => {
+      const techTheme = themeOptions.find(t => t.value === 'tech')
+      expect(techTheme).toBeDefined()
+      expect(techTheme?.label).toBe('技术')
     })
   })
 
-  describe('Theme CSS Content', () => {
-    it('default theme should contain h1 styles', () => {
-      expect(themeMap.default).toContain('h1')
+  describe('Theme Options Map', () => {
+    it('should have all themes in options map', () => {
+      expect(themeOptionsMap.default).toBeDefined()
+      expect(themeOptionsMap.grace).toBeDefined()
+      expect(themeOptionsMap.simple).toBeDefined()
+      expect(themeOptionsMap.minimal).toBeDefined()
+      expect(themeOptionsMap.tech).toBeDefined()
     })
 
-    it('default theme should contain h2 styles', () => {
-      expect(themeMap.default).toContain('h2')
-    })
-
-    it('default theme should use CSS variables', () => {
-      expect(themeMap.default).toContain('var(--md-primary-color)')
+    it('should have correct structure for each theme', () => {
+      Object.values(themeOptionsMap).forEach((theme) => {
+        expect(theme).toHaveProperty('label')
+        expect(theme).toHaveProperty('value')
+        expect(typeof theme.label).toBe('string')
+        expect(typeof theme.value).toBe('string')
+      })
     })
   })
 })

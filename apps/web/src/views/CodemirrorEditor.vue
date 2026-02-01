@@ -849,11 +849,23 @@ onUnmounted(() => {
     .loading__img {
       width: 75px;
       height: 75px;
-      background: url('../assets/images/favicon.png') no-repeat;
       margin: 1em auto;
-      background-size: cover;
+      font-size: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::before {
+        content: '✍️';
+        animation: pulse 1.5s ease-in-out infinite;
+      }
     }
   }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
 }
 
 :deep(.preview-table) {

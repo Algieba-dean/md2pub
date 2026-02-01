@@ -228,41 +228,48 @@ function copyToWeChat() {
 
 <template>
   <header
-    class="header-container h-15 flex flex-wrap items-center justify-between px-5 relative"
+    class="header-container h-14 flex flex-wrap items-center justify-between px-4 relative"
   >
-    <!-- 桌面端左侧菜单 -->
-    <div class="space-x-1 hidden md:flex">
-      <Menubar class="menubar border-0">
-        <FileDropdown @open-editor-state="handleOpenEditorState" />
-        <EditDropdown @copy="handleCopy" />
-        <FormatDropdown />
-        <InsertDropdown />
-        <StyleDropdown />
-        <ViewDropdown />
-        <HelpDropdown @open-about="handleOpenAbout" />
-      </Menubar>
-    </div>
+    <!-- 品牌 Logo + 菜单 -->
+    <div class="flex items-center gap-3">
+      <div class="brand-mark hidden sm:flex items-center">
+        <span class="font-semibold text-sm">md2pub</span>
+      </div>
 
-    <!-- 移动端汉堡菜单按钮 -->
-    <div class="md:hidden">
-      <Menubar class="menubar border-0 p-0">
-        <MenubarMenu>
-          <MenubarTrigger class="p-0">
-            <Button variant="outline" size="icon">
-              <Menu class="size-4" />
-            </Button>
-          </MenubarTrigger>
-          <MenubarContent align="start">
-            <FileDropdown :as-sub="true" @open-editor-state="handleOpenEditorState" />
-            <EditDropdown :as-sub="true" @copy="handleCopy" />
-            <FormatDropdown :as-sub="true" />
-            <InsertDropdown :as-sub="true" />
-            <StyleDropdown :as-sub="true" />
-            <ViewDropdown :as-sub="true" />
-            <HelpDropdown :as-sub="true" @open-about="handleOpenAbout" />
-          </MenubarContent>
-        </MenubarMenu>
-      </Menubar>
+      <!-- 桌面端菜单 -->
+      <div class="space-x-0.5 hidden md:flex">
+        <Menubar class="menubar border-0 bg-transparent">
+          <FileDropdown @open-editor-state="handleOpenEditorState" />
+          <EditDropdown @copy="handleCopy" />
+          <FormatDropdown />
+          <InsertDropdown />
+          <StyleDropdown />
+          <ViewDropdown />
+          <HelpDropdown @open-about="handleOpenAbout" />
+        </Menubar>
+      </div>
+
+      <!-- 移动端汉堡菜单按钮 -->
+      <div class="md:hidden">
+        <Menubar class="menubar border-0 p-0">
+          <MenubarMenu>
+            <MenubarTrigger class="p-0">
+              <Button variant="outline" size="icon">
+                <Menu class="size-4" />
+              </Button>
+            </MenubarTrigger>
+            <MenubarContent align="start">
+              <FileDropdown :as-sub="true" @open-editor-state="handleOpenEditorState" />
+              <EditDropdown :as-sub="true" @copy="handleCopy" />
+              <FormatDropdown :as-sub="true" />
+              <InsertDropdown :as-sub="true" />
+              <StyleDropdown :as-sub="true" />
+              <ViewDropdown :as-sub="true" />
+              <HelpDropdown :as-sub="true" @open-about="handleOpenAbout" />
+            </MenubarContent>
+          </MenubarMenu>
+        </Menubar>
+      </div>
     </div>
 
     <!-- 右侧操作区 -->

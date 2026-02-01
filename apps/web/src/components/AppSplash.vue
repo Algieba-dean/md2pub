@@ -14,7 +14,10 @@ onMounted(() => {
       v-if="loading"
       class="loading"
     >
-      <strong>致力于让 Markdown 编辑更简单</strong>
+      <div class="brand-logo">
+        <span class="logo-text">md2pub</span>
+      </div>
+      <p class="tagline">Markdown to Publish</p>
     </div>
   </transition>
 </template>
@@ -31,16 +34,29 @@ onMounted(() => {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  font-size: 18px;
-  background-color: hsl(var(--background));
+  background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+}
 
-  &::before {
-    content: url('../assets/images/favicon.png');
-    width: 100px;
-    height: 100px;
-    margin-bottom: 26px;
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  .logo-text {
+    font-size: 28px;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    letter-spacing: -0.5px;
   }
 }
+
+.tagline {
+  font-size: 14px;
+  color: hsl(var(--muted-foreground));
+  letter-spacing: 2px;
+}
+
 
 .fade-enter,
 .fade-leave-to {
