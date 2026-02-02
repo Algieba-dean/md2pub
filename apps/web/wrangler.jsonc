@@ -7,6 +7,12 @@
   "name": "md",
   "compatibility_date": "2025-09-06",
   "main": "worker/index.ts",
+  "routes": [
+    {
+      "pattern": "md2pub.algieba12.cn",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "not_found_handling": "single-page-application",
     "directory": "./dist/"
